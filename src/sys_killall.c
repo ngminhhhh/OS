@@ -36,10 +36,6 @@ int __sys_killall(struct pcb_t *caller, struct sc_regs* regs)
     }
     printf("The procname retrieved from memregionid %d is \"%s\"\n", memrg, proc_name);
 
-    /* TODO: Traverse proclist to terminate the proc
-     *       stcmp to check the process match proc_name
-     */
-    //caller->running_list
     //caller->mlq_ready_queu
     for (int i = 0 ; i < caller->running_list->size ; i ++) {
         if (strcmp(caller->running_list->proc[i]->path, proc_name) == 0) {
@@ -67,11 +63,6 @@ int __sys_killall(struct pcb_t *caller, struct sc_regs* regs)
             i --;
         }
     }
-
-    /* TODO Maching and terminating 
-     *       all processes with given
-     *        name in var proc_name
-     */
 
     return 0; 
 }

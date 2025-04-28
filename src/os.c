@@ -68,7 +68,7 @@ static void * cpu_routine(void * args) {
 				id ,proc->pid);
 			// ! Dont free like this => leak memory
 			// * Process done it job => remove from running list
-			remove_running_proc(proc->running_list, proc);
+			remove_running_proc(proc);
 			free(proc);  
 			proc = get_proc();
 			time_left = 0;
@@ -76,7 +76,7 @@ static void * cpu_routine(void * args) {
 			/* The process has done its job in current time slot */
 			printf("\tCPU %d: Put process %2d to run queue\n",
 				id, proc->pid);
-			remove_running_proc(proc->running_list, proc);
+			remove_running_proc(proc);
 			put_proc(proc);
 			proc = get_proc();
 		}
